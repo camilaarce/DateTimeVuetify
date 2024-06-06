@@ -1,4 +1,4 @@
-#DateTimeVuetify
+# DateTimeVuetify
 
 The date_time_vuetify package is a library that provides a date and time selection component for Vue.js applications with Vuetify. This component allows users to easily choose a date and time from an intuitive and friendly interface.
 
