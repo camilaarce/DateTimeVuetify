@@ -1,27 +1,27 @@
 <template>
     <v-text-field variant="outlined" density="compact" :label="props.label" prepend-inner-icon="$calendar"
-        @click="dialog = true" v-model="fecha" @input="$emit('update:modelValue', $event)"></v-text-field>
+        @click="dialog = true" v-model="fecha" @input="$emit('update:modelValue', $event)" ></v-text-field>
 
     <v-dialog v-model="dialog" width="auto">
-        <v-card max-width="400" prepend-icon="$calendar" :title="props.title">
+        <v-card max-width="400" prepend-icon="$calendar" :title="props.title" :style="props.mode == 'light' ? styleCardLight : styleCardDark">
             <v-tabs v-model="tab" align-tabs="center">
                 <v-tab value="date"><v-icon icon="$calendar"></v-icon></v-tab>
-                <v-tab value="time"><v-icon icon="mdi-clock-outline"></v-icon></v-tab>
+                <v-tab value="time" :disabled="!date"><v-icon icon="mdi-clock-outline"></v-icon></v-tab>
             </v-tabs>
             <v-card-text>
                 <v-tabs-window v-model="tab">
                     <v-tabs-window-item value="date">
                         <v-date-picker :hide-header="true" :show-adjacent-months="true" v-model="date"
-                            @change="emitValue"></v-date-picker>
+                            @change="emitValue" :style="props.mode == 'light' ? styleDateLight : styleDateDark"></v-date-picker>
                     </v-tabs-window-item>
                     <v-tabs-window-item value="time">
-                        <VTimePicker format="24hr" v-model="time" @change="emitValue"></VTimePicker>
+                        <VTimePicker format="24hr" v-model="time" @change="emitValue" :style="props.mode == 'light' ? styleTimeLight : styleTimeDark"></VTimePicker>
                     </v-tabs-window-item>
                 </v-tabs-window>
             </v-card-text>
             <v-card-actions>
                 <v-btn @click="clear">Cancelar</v-btn>
-                <v-btn :color="props.color" variant="elevated" @click="emitValue(); dialog = false">OK</v-btn>
+                <v-btn :color="props.color" variant="elevated" @click="emitValue(); dialog = false" :disabled="!date || !time">OK</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -36,7 +36,8 @@ const props = defineProps({
     modelValue: String,
     label: String,
     title: String,
-    color: String
+    color: String,
+    mode: String
 });
 
 const date = ref(null);
@@ -62,4 +63,12 @@ function emitValue() {
         emit('update:modelValue', fecha.value);
     }
 }
+
+const styleCardDark = 'background-color: #212121; color: #fff';
+const styleDateDark = 'background-color: #151515; color: #fff';
+const styleTimeDark = 'background-color: #151515; color: #fff';
+
+const styleCardLight = 'background-color: #fff; color: #000';
+const styleDateLight = 'background-color: #fff; color: #000';
+const styleTimeLight = 'background-color: #fff; color: #000';
 </script>

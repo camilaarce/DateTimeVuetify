@@ -9,3 +9,4 @@ The props used in the component are options:
 + label: to set the text that will be seen in the component before setting date and time.
 + title: for the title of the dialog.
 + color: for the accept button.
++ mode: to choose between light mode and dark mode. Accepts the string 'light' or 'dark'.

@@ -1,6 +1,6 @@
 {
   "name": "date_time_vuetify",
-  "version": "0.1.6",
+  "version": "0.1.13",
   "main": "dist/date_time_vuetify.common.js",
   "private": false,
   "author": "Camila Daniela Arce",
@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "npm": "^10.8.1",
+    "vue": "^3.2.13",
+    "vuetify": "^3.6.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
